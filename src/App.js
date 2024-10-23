@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import CountriesSearch from './Countriessearch';
+import CountrySearch from './Countries';
 
 function App() {
   return (
     <div className="App">
-       <CountriesSearch/>
+       <CountrySearch/>
     </div>
   );
 }

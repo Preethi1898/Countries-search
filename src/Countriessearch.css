@@ -1,6 +1,6 @@
 .countrybox{
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
 .countryCard{
     border:1px solid grey;
