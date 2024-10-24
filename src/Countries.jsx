@@ -132,7 +132,7 @@ const Countries = () => {
                         )
                     })
                 ):
-                (countries.map((country)=>{
+                (!searchQuery && countries.map((country)=>{
                     return (
                         // <Country name={country.name} flags={country.flags}/>
     
