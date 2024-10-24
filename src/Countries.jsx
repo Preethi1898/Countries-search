@@ -60,7 +60,7 @@
 
 import React, {useEffect, useState} from 'react';
 
-const CountrySearch = () => {
+const Countries = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [searchQuery, setSearchQuery] = useState("");
     const countriesStyle = {
@@ -84,13 +84,14 @@ const CountrySearch = () => {
     }
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [countries, setCountries]= useState([]);
+    const[FilteredCountries,setFilteredCountries]=useState([]);
     // eslint-disable-next-line react-hooks/rules-of-hooks,react-hooks/exhaustive-deps
     const handleSearch = (searchQuery) => {
         
         const filtered = countries.filter((country) => {
             return country.name.common.toLowerCase().includes(searchQuery.toLowerCase());
         });
-        setCountries(filtered);
+        setFilteredCountries(filtered);
     }
     
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -117,21 +118,37 @@ const CountrySearch = () => {
         }}
         />
         <div style={countriesStyle}>
-            {countries.map((country)=>{
-                return (
-                    // <Country name={country.name} flags={country.flags}/>
-
-                        <div style={countryStyle} className="countryCard">
-                            <img src={country.flags.png} alt={country.name.common} width={100} height={100} style = {{"margin":"5px"}} />
-                            <h5 style = {{"margin":"3px"}} >{country.name.common}</h5>
-                        </div>
-
-                )
-            })}
+            {
+                FilteredCountries.length > 0 ? (
+                    FilteredCountries.map((country)=>{
+                        return (
+                            // <Country name={country.name} flags={country.flags}/>
+        
+                                <div style={countryStyle} className="countryCard">
+                                    <img src={country.flags.png} alt={country.name.common} width={100} height={100} style = {{"margin":"5px"}} />
+                                    <h5 style = {{"margin":"3px"}} >{country.name.common}</h5>
+                                </div>
+        
+                        )
+                    })
+                ):
+                (countries.map((country)=>{
+                    return (
+                        // <Country name={country.name} flags={country.flags}/>
+    
+                            <div style={countryStyle} className="countryCard">
+                                <img src={country.flags.png} alt={country.name.common} width={100} height={100} style = {{"margin":"5px"}} />
+                                <h5 style = {{"margin":"3px"}} >{country.name.common}</h5>
+                            </div>
+    
+                    )
+                }))
+            }
+            
         </div>
         </>
     )
 
 }
 
-export default CountrySearch;
+export default Countries;
